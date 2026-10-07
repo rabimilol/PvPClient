@@ -1,4 +1,4 @@
-package com.example.pvpclient.config;
+package com.rabimi.pvpclient.config;
 
 public class ClientConfig {
     public static boolean enableCps = true;
