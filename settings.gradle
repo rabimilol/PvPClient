@@ -9,4 +9,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'Quad_Client'
+rootProject.name = 'quad_client'
