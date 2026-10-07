@@ -1,4 +1,4 @@
-package com.example.pvpclient;
+package com.rabimi.pvpclient;
 
 import com.example.pvpclient.hud.CpsHudOverlay;
 import net.fabricmc.api.ClientModInitializer;
