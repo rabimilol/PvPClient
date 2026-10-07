@@ -1,6 +1,6 @@
 package com.rabimi.pvpclient;
 
-import com.example.pvpclient.hud.CpsHudOverlay;
+import com.rabimi.pvpclient.hud.CpsHudOverlay;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.loader.api.FabricLoader;
