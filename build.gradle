@@ -1,50 +1,53 @@
 plugins {
-    id 'fabric-loom' version '1.13.6'
-    id 'java'
+    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'maven-publish'
 }
 
-group = 'com.rabimi'
-version = '1.6.1'
+version = project.mod_version
+group = project.mod_group
+
+base {
+    archivesName = project.mod_id
+}
 
 repositories {
+    mavenCentral()
     maven {
         name = "Fabric"
         url = "https://maven.fabricmc.net/"
     }
-    maven {
-        name = "SonatypeSnapshots"
-        url = "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
-    mavenCentral()
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:1.21.5"
-    mappings "net.fabricmc:yarn:1.21.5+build.1:v2"
-    modImplementation "net.fabricmc:fabric-loader:0.18.1"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.128.2+1.21.5"
+    // Minecraft & Fabric
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.1"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
 }
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    withSourcesJar()
 }
 
-loom {
-    mods{
-        javaskinchanger{
-            sourceSet sourceSets.main
-        }
+jar {
+    from("LICENSE") {
+        rename "${it}_${project.base.archivesName.get()}"
     }
-    runs {
-        client {
-            ideConfigGenerated = true
-        }
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
-    it.options.release = 21
 }
