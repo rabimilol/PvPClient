@@ -1,4 +1,4 @@
-package com.example.pvpclient.config;
+package com.rabimi.pvpclient.config;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
